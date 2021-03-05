@@ -45,14 +45,19 @@ app.use('/api/posts', router);
 app.get('/posts', (req, res) => {
     let loginState = req.isLoggedIn;
     // let count = req.count;
-    //console.log("my user session:", req.user);
+    console.log("my user session:", req.user);
     utils.renderHelper(req, res, 'pages/posts.ejs', {page: "posts_page", loginState});
 })
 
 app.get('/posts/:ID', (req, res) => {
     let loginState = req.isLoggedIn;
+    let currSession = { user: {
+        userId: null
+    }};
     // let count = req.count;
-    let currSession = req.currentUser;
+    if (loginState) {
+        currSession = req.currentUser;
+    } 
     console.log("this is currSession **** = ", currSession);
     console.log("AM I LOGGED IN? = ", loginState);
     let id = req.params.ID;

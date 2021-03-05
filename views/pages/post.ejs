@@ -77,11 +77,16 @@
     <% } %>
 </article>
   <div class="container">
+<%if (loginState) { %>
+      <%if (Saguid !== currSession.user.userId) { %>
+
     <div class="row" style="text-align: center;">
         <div class="col-md-1">
           <button type="button" class="btn btn-outline-secondary" id="upvote"><i class="fas fa-arrow-up"></i></button>
         </div>
     </div>
+    <% } %>
+    <% } %>
     <div class="row" style="text-align: center;">
       <div class="col-md-1" id="votes_container"></div>
     </div>

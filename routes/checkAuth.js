@@ -48,7 +48,7 @@ function encodeSignOutQuery(state) {
 const authenticateJWT = (req, res, next) => {
     req.isLoggedIn = false;
     req.user = null;
-    //console.log('(MIDDLEWARE) req.user is=', req);
+    console.log('(MIDDLEWARE) req.user is=', req);
     if (!req.cookies.jwt) {
         const authHeader = req.headers.authorization;
         //console.log("THIS IS AUTHHEADER: ", authHeader, typeof authHeader);

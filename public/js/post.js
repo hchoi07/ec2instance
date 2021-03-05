@@ -13,8 +13,7 @@
 
         </div>`.trim();
 
-    let ifCurrUser_html = `<button type="button" id="edit_post_button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit_post_modal"><i class="far fa-edit"></i>
-    </button>
+    let ifCurrUser_html = `
     <button type="button" id="delete_comment_button" class="btn btn-outline-secondary"><i class="far fa-trash-alt"></i>
         </button>`.trim();
 
@@ -61,10 +60,16 @@
         data.forEach(comment => {
             console.log("data's user id is ", comment.Saguid);
             let author = comment.Saguid;
-
-            if(author === id) {
+		if(id === null) {
+                comment_html = comment_html.replace(optional_toolbar,'');
+                html += comment_html
+                .replace(/{{Saguid}}/g, comment.Saguid)
+                .replace(/{{content}}/g, comment.content)
+                .replace(/{{date}}/g, moment(comment.date).fromNow())
+                .replace(/{{ID}}/g, comment.commentID); //g means global
+            } else if(author === id) {
                 console.log("Comment author ", author, " is equal to the currUser ", id);
-                comment_html.replace(optional_toolbar, ifCurrUser_html);
+                comment_html = comment_html.replace(optional_toolbar, ifCurrUser_html);
                 html += comment_html
                 .replace(/{{Saguid}}/g, comment.Saguid)
                 .replace(/{{content}}/g, comment.content)
@@ -74,6 +79,7 @@
                 console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
             } else{
                 console.log("Comment author ", author, " is NOT equal to the currUser ", id);
+		comment_html = comment_html.replace(optional_toolbar,'');
                 html += comment_html
                 .replace(/{{Saguid}}/g, comment.Saguid)
                 .replace(/{{content}}/g, comment.content)

@@ -70,7 +70,7 @@ router.get('/logout/complete', (req, res) => {
     if (req.cookies.jwt) {
         res.clearCookie('jwt');
     }
-    res.redirect('http://54.202.165.130');
+    res.redirect('http://54.202.165.130/posts');
 
 })
 
