@@ -6,7 +6,6 @@ const { query } = require('express');
 const requestPromise = require('request-promise');
 const parseXML = require("xml2js").parseString; //Example XML Parsing library
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
 
 function extractProfileInfo(body, accessToken) {
     return new Promise(function(resolve, reject) {

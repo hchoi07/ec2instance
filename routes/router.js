@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const posts = require('../Posts');
-const comments = require('../Comments');
 const queryLibrary = require('../queryLibrary');
 const { query } = require('express');
 
